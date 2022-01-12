@@ -26,4 +26,5 @@
             head = head.next
         return head
   ```
-  
+- **019 [删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)**  
+  **思路**：先求链表长度`length`，那即变为删除第`length - N + 1`个节点，从头数过去就行
