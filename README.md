@@ -6,8 +6,7 @@
   **Tips**：
   如果要删除节点`p`的下一个节点,只需要进行`p.next = p.next.next`操作便可将`p`的**下一个节点**删除。  
   
-  **思路**：  
-  对于这一题只需要从头节点开始遍历一遍后续节点，（**即从`p.next`开始遍历**）将所有符合条件的节点移除即可，最后再判断头节点是否需要移除。  
+  **思路**：对于这一题只需要从头节点开始遍历一遍后续节点，（**即从`p.next`开始遍历**）将所有符合条件的节点移除即可，最后再判断头节点是否需要移除。  
   
   **python 实现**：  
   ```
@@ -27,4 +26,39 @@
         return head
   ```
 - **019 [删除链表的倒数第N个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)**  
-  **思路**：先求链表长度`length`，那即变为删除第`length - N + 1`个节点，从头数过去就行
+  **思路**：先求链表长度`length`，那即变为删除第`length - N + 1`个节点，从头数过去就行  
+  
+  **c++实现**
+  ```
+  class Solution {
+  public:
+    int length(ListNode* head){
+        int length=0;
+        ListNode *p = head;
+        while(p->next != nullptr){
+            length++;
+            p = p->next;
+        }
+        return length+1;
+    }
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *p = head;
+        if(p->next == nullptr)
+        return p->next;
+        int L = length(head);
+        if(L == n)
+        return p->next;
+        
+        //printf("%d",L);
+        int N = L - n;
+        for(int i=0; i<N-1; i++){
+            p = p->next;
+        }
+
+        p->next = p->next->next;
+        return head;
+
+    }
+
+};
+```
